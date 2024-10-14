@@ -20,6 +20,7 @@ public class Prescription {
 	private String[] remarkTypes= {"Client", "Optometrist"};
 	private ArrayList <String> postRemarks = new ArrayList<>();
 	
+	//Initialize each prescription variable
 	public Prescription(int prescID,String firstName, String lastName, String address, float sphere,
 			 float cylinder,float axis, Date examinationDate,  String optometrist  ) {
         this.prescID = prescID;
@@ -34,6 +35,7 @@ public class Prescription {
 		
 	}
 	
+	//Add conditions for prescriptions
 	public boolean addPrescription() {
 		if(firstName.length() < 4 || firstName.length() > 15 || lastName.length() < 4 || lastName.length() > 15) {
 			return false;
@@ -63,7 +65,7 @@ public class Prescription {
 		        directory.mkdirs(); 
 		    }
 		
-		
+		 // Write prescription details to file
 		try(BufferedWriter writer = new BufferedWriter(new FileWriter(directory + "/presc.txt", true))){
 			writer.write(String.format("Prescription ID: %d, Name: %s %s, Address: %s, Sphere: %.2f, Cylinder: %.2f, Axis: %.2f, Date: %s, Optometrist: %s\n",
                     prescID, firstName, lastName, address, sphere, cylinder, axis, formattedDate, optometrist));
@@ -79,7 +81,7 @@ public class Prescription {
 		
 	}
 	
-	
+	//Add conditions for remarks
 	public boolean addRemark(String remark, String category) {
 		String[] words = remark.split(" ");
 		if(words.length < 6 || words.length > 20 || !Character.isUpperCase(words[0].charAt(0))) {
@@ -104,7 +106,7 @@ public class Prescription {
 		    if (!directory.exists()) {
 		        directory.mkdirs(); 
 		    } 
-		 
+		 // Write remark details to file
 		try(BufferedWriter writer = new BufferedWriter(new FileWriter(directory + "/review.txt", true))){
 			writer.write("Category: " + category + "\n");
 			writer.write("Remark: " + remark + "\n");

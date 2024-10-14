@@ -74,6 +74,8 @@ class PrescriptionTest {
         assertFalse(prescription.addPrescription(), "Valid prescription should return false");
     }
 	
+	//invalid sphere value
+	
 	@Test
     void testInvalidSphere() {
 		Date examinationDate = createExaminationDate("2024-10-25");
@@ -87,6 +89,8 @@ class PrescriptionTest {
         assertFalse (prescription2.addPrescription(), "Valid prescription should return true");
     }
 	
+	//invalid cylinder value
+	
 	@Test
     void testInvalidCylinder() {
 		Date examinationDate = createExaminationDate("2024-10-25");
@@ -98,6 +102,7 @@ class PrescriptionTest {
         assertFalse (prescription2.addPrescription(), "Valid prescription should return true");
     }
 	
+	//invalid axis value
 	@Test
     void testInvalidAxis() {
 		Date examinationDate = createExaminationDate("2024-10-25");
@@ -108,7 +113,7 @@ class PrescriptionTest {
         assertFalse (prescription1.addPrescription(), "Valid prescription should return true");
         assertFalse (prescription2.addPrescription(), "Valid prescription should return true");
     }
-	
+	//invalid optometrist 
 	@Test
     void testInvalidOptometrist() {
 		Date examinationDate = createExaminationDate("2024-10-25");
@@ -121,7 +126,7 @@ class PrescriptionTest {
     }
 	
 	//addRemark test case
-	
+	//valid remark test case
 	 @Test
 	    void testValidRemark() {
 	        Date examinationDate = createExaminationDate("2024-10-25");
@@ -134,7 +139,7 @@ class PrescriptionTest {
 	                   "Valid remark should return true");
 
 	    }	
-	 
+	//invalid test case with short remark
 	 @Test
 	    void testInvalidShortRemark() {
 	        Date examinationDate = createExaminationDate("2024-10-25");
@@ -146,7 +151,7 @@ class PrescriptionTest {
 	        assertFalse(prescription.addRemark("Good", "client"), 
                     "Remark should return false");
 	    }
-	 
+	//invalid test case with long remark
 	 void testInvalidLongRemark() {
 	        Date examinationDate = createExaminationDate("2024-10-25");
 	        Prescription prescription = new Prescription(1, "John", "Doey", "123 Main Street, Suburb, 12345",
@@ -161,12 +166,13 @@ class PrescriptionTest {
 	        
 	    }
 	 
+	//The remark does not start with upper case 
 	 void testNoUppercaseRemark() {
 	        Date examinationDate = createExaminationDate("2024-10-25");
 	        Prescription prescription = new Prescription(1, "John", "Doey", "123 Main Street, Suburb, 12345",
 	                18.25f, 3.0f, 90f, examinationDate, "Williams");
 	       
-	       //The remark does not start with upper case 
+	       
 	        assertFalse(prescription.addRemark("client is experiencing improved vision but might need another checkup in a few months depending on their current situation", 
 	        		"client"), 
                  "Remark should return false");
@@ -175,7 +181,7 @@ class PrescriptionTest {
                  "Remark should return false");
 	    }
 	 
-	 
+	//Invalid category test case 
 	 @Test
 	    void testInvalidCategory() {
 	        Date examinationDate = createExaminationDate("2024-10-25");
@@ -187,7 +193,7 @@ class PrescriptionTest {
 	        assertFalse(prescription.addRemark("A client vision is steadily improving now.","customer"), 
 	        		"Category should return false");
 	    }
-	 
+	//Invalid exceeding number of remarks 
 	 @Test
 	 void testExceedingRemarksLimit() {
 	     Date examinationDate = createExaminationDate("2024-10-25");
